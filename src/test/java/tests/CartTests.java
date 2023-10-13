@@ -111,4 +111,22 @@ public class CartTests extends BasicTest{
                 "Hamburger menu button should be enabled after click.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheCartIconIsEnabled() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnCartButton();
+        Assert.assertTrue(topNavPage.getCartButton().isEnabled(),
+                "Cart icon should be enabled after click.");
+    }
+
 }
