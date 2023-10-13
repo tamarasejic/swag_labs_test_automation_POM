@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import retry.SwagLabsRetry;
 
@@ -20,5 +21,25 @@ public class CartTests extends BasicTest{
 
         urlPage.waitForCurrentPageToBeCartPage();
 }
+
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyTheTitlePage() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+
+        Assert.assertEquals(driver.getTitle(),
+                "Swag Labs",
+                "Page title should be Swag Labs");
+    }
 
 }
