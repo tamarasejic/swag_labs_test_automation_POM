@@ -129,4 +129,24 @@ public class CartTests extends BasicTest{
                 "Cart icon should be enabled after click.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheHamburgerButtonIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+
+        Assert.assertTrue(leftNavPage.getLeftMenuWindow()
+                        .isDisplayed(),
+                "User should see the left navigation menu.");
+    }
+
 }

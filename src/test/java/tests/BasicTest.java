@@ -9,10 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.InventoryPage;
-import pages.LoginPage;
-import pages.TopNavPage;
-import pages.UrlPage;
+import pages.*;
 
 import java.time.Duration;
 
@@ -24,6 +21,7 @@ public abstract class BasicTest {
     protected UrlPage urlPage;
     protected TopNavPage topNavPage;
     protected InventoryPage inventoryPage;
+    protected LeftNavPage leftNavPage;
 
 
     @BeforeClass
@@ -38,6 +36,7 @@ public abstract class BasicTest {
         urlPage = new UrlPage(driver,wait);
         topNavPage = new TopNavPage(driver,wait);
         inventoryPage = new InventoryPage(driver,wait);
+        leftNavPage = new LeftNavPage(driver,wait);
     }
 
     @BeforeMethod
