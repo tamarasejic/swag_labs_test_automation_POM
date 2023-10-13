@@ -204,4 +204,24 @@ public class CartTests extends BasicTest{
                 "Sub-header title should be 'Your Cart'");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyTheTotalNumberOfMenuOptions() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+
+        Assert.assertEquals(leftNavPage.getNumberOfMenuOptions(),
+                        4,
+                "There should be 4 total options in menu");
+    }
+
 }
