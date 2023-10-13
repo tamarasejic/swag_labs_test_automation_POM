@@ -187,4 +187,21 @@ public class CartTests extends BasicTest{
                 "Number in the cart icon should be equivalent to the total numbers of added items.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyTheSubHeaderTitle() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+
+        Assert.assertEquals(topNavPage.getSubHeaderTitleText(),
+                "Your Cart",
+                "Sub-header title should be 'Your Cart'");
+    }
+
 }

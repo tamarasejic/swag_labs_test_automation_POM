@@ -38,4 +38,11 @@ public class TopNavPage extends BasicPage{
         return getShoppingCartBadge().getText();
     }
 
+    public WebElement getSubHeaderTitle(){
+        return driver.findElement(By.className("title"));
+    }
+    public String getSubHeaderTitleText(){
+        return getSubHeaderTitle().getText();
+    }
+
 }
