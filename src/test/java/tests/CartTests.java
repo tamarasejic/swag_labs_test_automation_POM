@@ -59,4 +59,21 @@ public class CartTests extends BasicTest{
                 "Header title should be Swag Labs");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheHamburgerMenuButtonIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        Assert.assertTrue(topNavPage.getHamburgerMenuButton().isDisplayed(),
+                "Hamburger menu button should be present.");
+    }
+
 }

@@ -22,4 +22,12 @@ public class TopNavPage extends BasicPage{
         return getHeaderTitle().getText();
     }
 
+    public WebElement getHamburgerMenuButton(){
+        return driver.findElement(By.id("react-burger-menu-btn"));
+    }
+
+    public void clickOnHamburgerMenuButton(){
+        getHamburgerMenuButton().click();
+    }
+
 }
