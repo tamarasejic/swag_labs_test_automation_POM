@@ -73,7 +73,24 @@ public class CartTests extends BasicTest{
         urlPage.waitForCurrentPageToBeCartPage();
 
         Assert.assertTrue(topNavPage.getHamburgerMenuButton().isDisplayed(),
-                "Hamburger menu button should be present.");
+                "Hamburger menu button should be presented.");
+    }
+
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheCartIconIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        Assert.assertTrue(topNavPage.getCartButton().isDisplayed(),
+                "Cart icon should be presented.");
     }
 
 }
