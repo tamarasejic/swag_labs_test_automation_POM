@@ -164,4 +164,27 @@ public class CartTests extends BasicTest{
 
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheCartIconHasCorrectNumberOfAddedItems() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+        int itemsNumAfterAddToCart = cartBodyPage.numberOfItemsAdded();
+
+        Assert.assertEquals(topNavPage
+                .getShoppingCartBadgeText(),
+                String.valueOf(itemsNumAfterAddToCart),
+                "Number in the cart icon should be equivalent to the total numbers of added items.");
+    }
+
 }

@@ -30,4 +30,12 @@ public class TopNavPage extends BasicPage{
         getHamburgerMenuButton().click();
     }
 
+    public WebElement getShoppingCartBadge(){
+        return driver.findElement(By.className("shopping_cart_badge"));
+    }
+
+    public String getShoppingCartBadgeText(){
+        return getShoppingCartBadge().getText();
+    }
+
 }
