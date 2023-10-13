@@ -9,6 +9,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.LoginPage;
+import pages.TopNavPage;
+import pages.UrlPage;
 
 import java.time.Duration;
 
@@ -16,6 +19,10 @@ public abstract class BasicTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected String baseUrl = "https://www.saucedemo.com/";
+    protected LoginPage loginPage;
+    protected UrlPage urlPage;
+    protected TopNavPage topNavPage;
+
 
     @BeforeClass
     public void setup() {
@@ -25,6 +32,9 @@ public abstract class BasicTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        loginPage = new LoginPage(driver,wait);
+        urlPage = new UrlPage(driver,wait);
+        topNavPage = new TopNavPage(driver,wait);
     }
 
     @BeforeMethod
