@@ -59,5 +59,9 @@ public class FooterPage extends BasicPage{
                 .perform();
     }
 
+    public void clickOnFacebookButton(){
+        getFacebookButton().click();
+    }
+
 
 }
