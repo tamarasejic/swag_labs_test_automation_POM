@@ -224,4 +224,26 @@ public class CartTests extends BasicTest{
                 "There should be 4 total options in menu");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyTheSpellingOfAllOptionsInMenu() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+
+        leftNavPage.isOptionSpellingCorrect(0,"All Items");
+        leftNavPage.isOptionSpellingCorrect(1,"About");
+        leftNavPage.isOptionSpellingCorrect(2,"Logout");
+        leftNavPage.isOptionSpellingCorrect(3,"Reset App");
+
+    }
+
 }

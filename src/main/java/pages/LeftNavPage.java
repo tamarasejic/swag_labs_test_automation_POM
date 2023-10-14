@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -25,4 +26,10 @@ public class LeftNavPage extends BasicPage{
         return getMenuOptions().size();
     }
 
+    public boolean isOptionSpellingCorrect(int optionIndex, String correctSpelling){
+        wait
+                .withMessage("Correct spelling should be " + correctSpelling)
+                .until(ExpectedConditions.textToBePresentInElement(getMenuOptions().get(optionIndex), correctSpelling));
+        return true;
+    }
 }
