@@ -45,4 +45,8 @@ public class TopNavPage extends BasicPage{
         return getSubHeaderTitle().getText();
     }
 
+    public boolean doesShoppingCartBadgeExist(){
+        return elementExists(By.className("shopping_cart_badge"));
+    }
+
 }

@@ -308,4 +308,24 @@ public class CartTests extends BasicTest{
                 "User should be logged out and redirected to the login page");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfResetAppStateIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+        leftNavPage.clickOnResetAppStateOptionButton();
+
+        Assert.assertFalse(topNavPage.doesShoppingCartBadgeExist(),
+                "The state of web app should reset - cart badge reset.");
+    }
+
 }

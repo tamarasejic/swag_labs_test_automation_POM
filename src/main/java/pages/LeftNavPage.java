@@ -54,4 +54,11 @@ public class LeftNavPage extends BasicPage{
         getLogoutOptionButton().click();
     }
 
+    public WebElement getResetAppStateOptionButton(){
+        return driver.findElement(By.id("reset_sidebar_link"));
+    }
+    public void clickOnResetAppStateOptionButton(){
+        getResetAppStateOptionButton().click();
+    }
+
 }
