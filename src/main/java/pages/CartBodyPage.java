@@ -47,4 +47,17 @@ public class CartBodyPage extends BasicPage{
         return elementExists(By.className("cart_quantity"), 1);
     }
 
+    public WebElement getProductTitleInCartByProductNameText(String productName) {
+        String selector = "//*[text()='" + productName + "']";
+        return driver.findElement(By.xpath(selector));
+    }
+    public boolean isProductTitleInCartByProductNameTextClickable(String productName){
+        wait
+                .withMessage(productName + " title is not clickable.")
+                .until(ExpectedConditions.elementToBeClickable
+                        (getProductTitleInCartByProductNameText(productName)));
+        return true;
+    }
+
+
 }
