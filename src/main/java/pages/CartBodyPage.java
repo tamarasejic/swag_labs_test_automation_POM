@@ -76,5 +76,14 @@ public class CartBodyPage extends BasicPage{
         return true;
     }
 
+    public void clickOnRemoveButtonInCartByProductNameText(String productName) {
+        getRemoveButtonInCartByProductNameText(productName).click();
+    }
+
+    public boolean doesProductInCartByProductNameTextExist(String productName){
+        String selector = "//*[text()='" + productName + "']/../../..";
+        return elementExists(By.xpath(selector),1);
+    }
+
 
 }
