@@ -267,4 +267,25 @@ public class CartTests extends BasicTest{
                 "User should be redirected to the products page");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfAboutOptionIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+        leftNavPage.clickOnAboutOptionButton();
+
+        Assert.assertEquals(driver.getCurrentUrl(),
+                "https://saucelabs.com/",
+                "User should be redirected to the the sauce labs website");
+    }
+
 }
