@@ -33,4 +33,15 @@ public class FooterPage extends BasicPage{
         return true;
     }
 
+    public WebElement getLinkedinButton(){
+        return driver.findElement(By.className("social_linkedin"));
+    }
+
+    public boolean isLinkedinButtonVisible(){
+        wait
+                .withMessage("Linkedin button is not visible.")
+                .until(ExpectedConditions.visibilityOf(getLinkedinButton()));
+        return true;
+    }
+
 }
