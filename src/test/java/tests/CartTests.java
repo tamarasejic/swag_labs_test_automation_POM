@@ -560,4 +560,25 @@ public class CartTests extends BasicTest{
                 "Item should be removed from the cart page");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheContinueShoppingButtonIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        Assert.assertTrue(cartBodyPage
+                        .isContinueButtonVisible(),
+                "Continue shopping button should be visible");
+    }
+
 }

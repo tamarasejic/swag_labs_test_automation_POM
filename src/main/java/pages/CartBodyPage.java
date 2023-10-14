@@ -85,5 +85,16 @@ public class CartBodyPage extends BasicPage{
         return elementExists(By.xpath(selector),1);
     }
 
+    public WebElement getContinueButton(){
+        return driver.findElement(By.id("continue-shopping"));
+    }
+
+    public boolean isContinueButtonVisible(){
+        wait
+                .withMessage("Continue shopping button is not visible.")
+                .until(ExpectedConditions.visibilityOf(getContinueButton()));
+        return true;
+    }
+
 
 }
