@@ -328,4 +328,23 @@ public class CartTests extends BasicTest{
                 "The state of web app should reset - cart badge reset.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheEkisButtonIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+
+        Assert.assertTrue(leftNavPage.getEkisButtonOption().isEnabled(),
+                "Ekis button should be presented.");
+    }
+
 }

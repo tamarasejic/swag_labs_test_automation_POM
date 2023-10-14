@@ -61,4 +61,11 @@ public class LeftNavPage extends BasicPage{
         getResetAppStateOptionButton().click();
     }
 
+    public WebElement getEkisButtonOption(){
+        return driver.findElement(By.id("react-burger-cross-btn"));
+    }
+    public void clickOnEkisButtonOption(){
+        getEkisButtonOption().click();
+    }
+
 }
