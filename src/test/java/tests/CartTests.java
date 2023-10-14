@@ -650,4 +650,25 @@ public class CartTests extends BasicTest{
                 "User should be redirected to the the checkout page.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheTwitterButtonIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        Assert.assertTrue(footerPage
+                        .isTwitterButtonVisible(),
+                "Twitter button should be visible");
+    }
+
 }
