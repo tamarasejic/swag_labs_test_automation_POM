@@ -516,4 +516,25 @@ public class CartTests extends BasicTest{
                 "User should be redirected to the the item's page.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheRemoveButtonIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        Assert.assertTrue(cartBodyPage
+                        .isRemoveButtonInCartByProductNameTextVisible("Sauce Labs Backpack"),
+                "Remove button should be visible");
+    }
+
 }

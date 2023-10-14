@@ -62,5 +62,19 @@ public class CartBodyPage extends BasicPage{
         getProductTitleInCartByProductNameText(productName).click();
     }
 
+    public WebElement getRemoveButtonInCartByProductNameText(String productName) {
+        String idContains = productName.toLowerCase().replace(" ", "-");
+        String selector = "//button[contains(@id, 'remove-" + idContains + "')]";
+        return driver.findElement(By.xpath(selector));
+    }
+
+    public boolean isRemoveButtonInCartByProductNameTextVisible(String productName){
+        wait
+                .withMessage(productName + " remove button is not visible.")
+                .until(ExpectedConditions.visibilityOf
+                        (getRemoveButtonInCartByProductNameText(productName)));
+        return true;
+    }
+
 
 }
