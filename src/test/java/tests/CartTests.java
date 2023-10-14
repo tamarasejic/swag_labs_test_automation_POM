@@ -707,4 +707,28 @@ public class CartTests extends BasicTest{
                 "Linkedin button should be visible");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheTwitterButtonIsWorking() throws Exception {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+        footerPage.scrollToFooter();
+        footerPage.clickOnTwitterButton();
+        urlPage.switchTabs(2,1);
+
+        Assert.assertEquals(driver.getCurrentUrl(),
+                "https://twitter.com/saucelabs",
+                "User should be redirected to the sauce labs twitter account.");
+
+        driver.close();
+        urlPage.switchTabs(1,0);
+    }
+
 }
