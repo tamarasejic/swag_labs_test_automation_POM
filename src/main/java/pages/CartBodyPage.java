@@ -111,5 +111,9 @@ public class CartBodyPage extends BasicPage{
         return true;
     }
 
+    public void clickOnCheckoutButton(){
+        getCheckoutButton().click();
+    }
+
 
 }
