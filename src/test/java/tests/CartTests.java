@@ -781,4 +781,26 @@ public class CartTests extends BasicTest{
         urlPage.switchTabs(1,0);
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyTheCopyRightNoticeMessage(){
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        footerPage.scrollToFooter();
+
+        Assert.assertEquals(footerPage.getCopyrightMessageText(),
+                "© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+                "Copyright message should be: " +
+                        "'© 2023 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'.");
+
+    }
+
 }
