@@ -22,4 +22,15 @@ public class FooterPage extends BasicPage{
         return true;
     }
 
+    public WebElement getFacebookButton(){
+        return driver.findElement(By.className("social_facebook"));
+    }
+
+    public boolean isFacebookButtonVisible(){
+        wait
+                .withMessage("Facebook button is not visible.")
+                .until(ExpectedConditions.visibilityOf(getFacebookButton()));
+        return true;
+    }
+
 }
