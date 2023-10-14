@@ -347,4 +347,24 @@ public class CartTests extends BasicTest{
                 "Ekis button should be presented.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheEkisButtonIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+        leftNavPage.clickOnEkisButtonOption();
+
+        Assert.assertTrue(leftNavPage.isLeftMenuWindowInvisible(),
+                "It should close the left menu navigation.");
+    }
+
 }
