@@ -47,4 +47,11 @@ public class LeftNavPage extends BasicPage{
         getAboutOptionButton().click();
     }
 
+    public WebElement getLogoutOptionButton(){
+        return driver.findElement(By.id("logout_sidebar_link"));
+    }
+    public void clickOnLogoutOptionButton(){
+        getLogoutOptionButton().click();
+    }
+
 }

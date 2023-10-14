@@ -288,4 +288,24 @@ public class CartTests extends BasicTest{
                 "User should be redirected to the the sauce labs website");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfLogoutOptionIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+        leftNavPage.clickOnLogoutOptionButton();
+
+        Assert.assertTrue(loginPage.getLoginForm().isDisplayed(),
+                "User should be logged out and redirected to the login page");
+    }
+
 }
