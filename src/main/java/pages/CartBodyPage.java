@@ -100,5 +100,16 @@ public class CartBodyPage extends BasicPage{
         getContinueButton().click();
     }
 
+    public WebElement getCheckoutButton(){
+        return driver.findElement(By.id("checkout"));
+    }
+
+    public boolean isCheckoutButtonVisible(){
+        wait
+                .withMessage("Checkout button is not visible.")
+                .until(ExpectedConditions.visibilityOf(getCheckoutButton()));
+        return true;
+    }
+
 
 }
