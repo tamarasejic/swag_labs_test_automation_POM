@@ -63,5 +63,9 @@ public class FooterPage extends BasicPage{
         getFacebookButton().click();
     }
 
+    public void clickOnLinkedinButton(){
+        getLinkedinButton().click();
+    }
+
 
 }

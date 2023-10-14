@@ -756,4 +756,29 @@ public class CartTests extends BasicTest{
         urlPage.switchTabs(1,0);
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheLinkedButtonIsWorking() throws Exception {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        footerPage.scrollToFooter();
+        footerPage.clickOnLinkedinButton();
+        urlPage.switchTabs(2,1);
+
+        Assert.assertEquals(driver.getCurrentUrl(),
+                "https://www.linkedin.com/company/sauce-labs/",
+                "User should be redirected to the sauce labs linkedin account.");
+
+        driver.close();
+        urlPage.switchTabs(1,0);
+    }
+
 }
