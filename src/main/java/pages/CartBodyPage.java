@@ -96,5 +96,9 @@ public class CartBodyPage extends BasicPage{
         return true;
     }
 
+    public void clickOnContinueButton(){
+        getContinueButton().click();
+    }
+
 
 }
