@@ -58,6 +58,9 @@ public class CartBodyPage extends BasicPage{
                         (getProductTitleInCartByProductNameText(productName)));
         return true;
     }
+    public void clickOnProductTitleInCartByProductNameText(String productName) {
+        getProductTitleInCartByProductNameText(productName).click();
+    }
 
 
 }

@@ -493,4 +493,27 @@ public class CartTests extends BasicTest{
                 "Item's title should be clickable");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheItemsTitleIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        cartBodyPage.clickOnProductTitleInCartByProductNameText("Sauce Labs Backpack");
+
+        Assert.assertTrue(driver.getCurrentUrl()
+                        .contains("inventory-item.html"),
+                "User should be redirected to the the item's page.");
+    }
+
 }
