@@ -32,4 +32,11 @@ public class LeftNavPage extends BasicPage{
                 .until(ExpectedConditions.textToBePresentInElement(getMenuOptions().get(optionIndex), correctSpelling));
         return true;
     }
+
+    public WebElement getAllItemsOption(){
+        return driver.findElement(By.id("inventory_sidebar_link"));
+    }
+    public void clickOnAllItemsOption(){
+       getAllItemsOption().click();
+    }
 }

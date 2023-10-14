@@ -246,4 +246,25 @@ public class CartTests extends BasicTest{
 
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfAllItemsOptionIsWorking() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        topNavPage.clickOnHamburgerMenuButton();
+        leftNavPage.clickOnAllItemsOption();
+
+        Assert.assertEquals(topNavPage.getSubHeaderTitleText(),
+                "Products",
+                "User should be redirected to the products page");
+    }
+
 }
