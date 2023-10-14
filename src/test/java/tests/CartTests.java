@@ -367,4 +367,25 @@ public class CartTests extends BasicTest{
                 "It should close the left menu navigation.");
     }
 
+    @Test (retryAnalyzer = SwagLabsRetry.class)
+    public void verifyIfTheItemsAddedIsPresented() {
+        String username = "standard_user";
+        String password = "secret_sauce";
+
+        loginPage.clearAndTypeUsername(username);
+        loginPage.clearAndTypePassword(password);
+        loginPage.clickOnLoginButton();
+        urlPage.waitForCurrentPageToBeInventoryPage();
+
+        inventoryPage.scrollToProductName("Sauce Labs Backpack");
+        inventoryPage.clickOnAddToCartButtonByProductName("Sauce Labs Backpack");
+
+        topNavPage.clickOnCartButton();
+        urlPage.waitForCurrentPageToBeCartPage();
+
+        Assert.assertTrue(cartBodyPage
+                        .doesProductInCartExistByProductNameText("Sauce Labs Backpack"),
+                "Added item should be visible in the cart page");
+    }
+
 }
